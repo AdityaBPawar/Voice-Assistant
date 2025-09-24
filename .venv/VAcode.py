@@ -16,6 +16,7 @@ def speak(text):
     except:
         print("Speech output not supported in this environment.")
 
+#function to wish the user
 def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour < 12:
@@ -26,9 +27,11 @@ def wishMe():
         speak("Good Evening!")
     speak("I am your voice assistant. How can I help you today?")
 
+#text command function if in case voice command doesnt work or is isn't feasible
 def take_command_text():
     return input("You (type your command): ").lower()
 
+#voice command function
 def take_command_voice():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -36,6 +39,7 @@ def take_command_voice():
         r.pause_threshold = 1
         audio = r.listen(source)
 
+#recognition command
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language='en-in')
@@ -45,6 +49,7 @@ def take_command_voice():
 
     return query.lower()
 
+#run assistant
 def run_assistant():
     wishMe()
 
